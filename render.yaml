@@ -17,7 +17,7 @@ services:
       mountPath: /data
       sizeGB: 1
 
-  - type: static
+  - type: web
     name: cleansheet-frontend
     env: static
     buildCommand: cd frontend && npm install && npm run build
