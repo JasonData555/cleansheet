@@ -10,12 +10,6 @@ services:
         value: production
       - key: PORT
         value: "3000"
-      - key: DATABASE_URL
-        value: /data/cleansheet.db
-    disk:
-      name: data
-      mountPath: /data
-      sizeGB: 1
 
   - type: web
     name: cleansheet-frontend
@@ -28,5 +22,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        sync: false
         value: https://cleansheet-backend.onrender.com
