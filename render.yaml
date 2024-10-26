@@ -1,10 +1,11 @@
 services:
   - type: web
-    name: cleansheet-backend
+    name: cleansheet-backend-prod
     env: node
     plan: free
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm start
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
@@ -12,14 +13,12 @@ services:
         value: "3000"
 
   - type: web
-    name: cleansheet-frontend
-    env: static
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    name: cleansheet-frontend-prod
+    env: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
     envVars:
       - key: VITE_API_URL
-        value: https://cleansheet-backend.onrender.com
+        value: https://cleansheet-backend-prod.onrender.com
